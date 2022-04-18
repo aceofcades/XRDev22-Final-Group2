@@ -1590,6 +1590,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TangramStarter
       objectReference: {fileID: 0}
+    - target: {fileID: 6562538584204406851, guid: 99986d85cb36afb43a541d02d855e471, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99986d85cb36afb43a541d02d855e471, type: 3}
 --- !u!1001 &6941192185864956529
@@ -1599,6 +1603,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2765379900275810753, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705155798835816411, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6941192184334895824, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1743,5 +1755,25 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 903454823}
+    - target: {fileID: 7233175970102393743, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254467774504091663, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397099765572448443, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455070099052548833, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693598500306785566, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0e7fefece2da294fa0c2c3cf76b7b75, type: 3}
