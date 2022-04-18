@@ -1722,7 +1722,7 @@ GameObject:
   - component: {fileID: 6941192186089250390}
   - component: {fileID: 7254467774504091663}
   m_Layer: 0
-  m_Name: PinkTriangle
+  m_Name: OrangeTriangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
