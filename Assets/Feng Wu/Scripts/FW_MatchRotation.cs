@@ -7,12 +7,12 @@ using UnityEngine;
 /// </summary>
 public class FW_MatchRotation : MonoBehaviour
 {
-    public GameObject targetObject;     // object to be followed
+    private GameObject targetObject;     // object to be followed, link to maze
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        targetObject = FW_HandyMazeManagement.singleton.maze;
     }
 
     // Update is called once per frame

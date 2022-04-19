@@ -7,17 +7,17 @@ using UnityEngine;
 /// </summary>
 public class FW_MatchPosition : MonoBehaviour
 {
-    public GameObject targetObject;     // link to left hand
+    private GameObject leftHand;     // link to left hand
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        leftHand = FW_HandyMazeManagement.singleton.leftHand;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = targetObject.transform.position;
+        this.transform.position = leftHand.transform.position;
     }
 }

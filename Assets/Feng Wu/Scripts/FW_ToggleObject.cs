@@ -6,24 +6,24 @@ using UnityEngine;
 /// 1. toggle target object to make it active or not active
 /// need to attach method to a button / trigger on controller
 /// target object to be hidden (not active) on start
-/// 2. Control balls management
 /// </summary>
+
 public class FW_ToggleObject : MonoBehaviour
 {
-    public GameObject targetObject;
-    public Transform controlBalls;
+    public static FW_ToggleObject singleton;
+    private GameObject handyMaze;
 
     private bool objectStatus = false;
 
-
     private void Awake()
     {
-        ControlBallsManagement();
+        singleton = this;
     }
 
     private void Start()
     {
-        targetObject.SetActive(objectStatus);
+        handyMaze = FW_HandyMazeManagement.singleton.handyMaze;
+        handyMaze.SetActive(objectStatus);
     }
 
     public void ToggleObjectButton()
@@ -41,31 +41,12 @@ public class FW_ToggleObject : MonoBehaviour
     public void ToggleObjectOn()
     {
         objectStatus = true;
-        targetObject.SetActive(objectStatus);
-        ControlBallsManagement();
+        handyMaze.SetActive(objectStatus);
     }
 
     public void ToggleObjectOff()
     {
         objectStatus = false;
-        targetObject.SetActive(objectStatus);
-    }
-
-    /// <summary>
-    /// manage the control balls, only make them activated when ball's Y == this object Y
-    /// </summary>
-    public void ControlBallsManagement()
-    {
-        foreach (Transform child in controlBalls)
-        {
-            if (child.position.y !=controlBalls.position.y)
-            {
-                child.gameObject.SetActive(false);
-            }
-            else
-            {
-                child.gameObject.SetActive(true);
-            }
-        }
+        handyMaze.SetActive(objectStatus);
     }
 }
