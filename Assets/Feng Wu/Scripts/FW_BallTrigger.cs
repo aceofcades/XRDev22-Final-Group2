@@ -14,12 +14,18 @@ public class FW_BallTrigger : MonoBehaviour
         singleton = this;
     }
 
+    private void Start()
+    {
+        ballTriggerIsTriggered = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ball")
         {
             other.gameObject.transform.localScale *= 2f;
             theBall = other.gameObject;
+            ballTriggerIsTriggered = true;
         }
     }
 
@@ -29,6 +35,7 @@ public class FW_BallTrigger : MonoBehaviour
         {
             other.gameObject.transform.localScale /= 2f;
             theBall = null;
+            ballTriggerIsTriggered = false;
         }
     }
 }

@@ -10,11 +10,11 @@ using UnityEngine;
 public class FW_ControlBalls : MonoBehaviour
 {
     public static FW_ControlBalls singleton;
+
+    public GameObject ball;
     
     private Transform controlBalls;
-    private Transform maze;
     private Transform controlBallsOrigin;
-    private GameObject theBall;     // the ball in ball trigger
 
     // Create a dictionary for active balls (object, transform)
     private Dictionary<GameObject, Transform> ballsDict = new Dictionary<GameObject, Transform>();
@@ -25,54 +25,112 @@ public class FW_ControlBalls : MonoBehaviour
     }
     private void Start()
     {
-        maze = FW_HandyMazeManagement.singleton.maze.transform;
         controlBalls = FW_HandyMazeManagement.singleton.controlBalls.transform;
-        ControlBallsStateAdjustment();
-    }
-
-    public void LeftHandSelectEnter()
-    {
-        ControlBallsStateAdjustment();
-    }
-
-    public void LeftHandSelectExit()
-    {
-        ballsDict.Clear();  // clean the dict. when exit
     }
 
     /// <summary>
-    /// manage the control balls, only make them activated when ball's Y == this object Y
+    /// mothod for HandyMazeManagement
     /// </summary>
-    public void ControlBallsStateAdjustment()
+    public void LeftHandSelectEnter()
     {
-        controlBallsOrigin = controlBalls;      // record center location for reference
-        ballsDict.Clear();
+        ControlBallsRegeneration();
+    }
+
+    /// <summary>
+    /// mothod for HandyMazeManagement
+    /// </summary>
+    public void LeftHandSelectExit()
+    {
+        ControlBallsCleaning();
+    }
+
+    /// <summary>
+    /// manage the control balls, instantiate them when show up
+    /// </summary>
+
+    private GameObject[] balls = new GameObject[4];     // array length = 4 balls
+    private float controlBallDistance = 0.15f;
+
+    public void ControlBallsRegeneration()
+    {
+        // do all cleaning first
+        ControlBallsCleaning();
+
+        // turn on Trigger
+        FW_BallTrigger.singleton.gameObject.SetActive(true);
+
+        // create 4 control balls
+        // move control balls to the right position - right, left, forward, backward
+        balls[0] = Instantiate(ball, controlBalls);
+        //Debug.Log("position_1.1" + balls[0].transform.position);
+        balls[0].transform.position += new Vector3(controlBallDistance, 0, 0);
+        //Debug.Log("position_1.2" + balls[0].transform.position);
+        balls[1] = Instantiate(ball, controlBalls);
+        balls[1].transform.position += new Vector3(-controlBallDistance, 0, 0);
+        balls[2] = Instantiate(ball, controlBalls);
+        balls[2].transform.position += new Vector3(0, 0, controlBallDistance);
+        balls[3] = Instantiate(ball, controlBalls);
+        balls[3].transform.position += new Vector3(0, 0, -controlBallDistance);
+
+        // record center location for reference
+        controlBallsOrigin = controlBalls;
+        // record their position for reference
         foreach (Transform child in controlBalls)
         {
-            if (child.position.y == controlBalls.position.y)
-            {
-                child.gameObject.SetActive(true);
-
-                // add child info into the dictionary, for reference
-                ballsDict.Add(child.gameObject, child.transform);
-            }
-            else
-            {
-                child.gameObject.SetActive(false);
-            }
+            // add child info into the dictionary, for reference
+            ballsDict.Add(child.gameObject, child.transform);
         }
     }
 
-    private Transform theBallOriginal;      // the ball's original transform
-    private bool mazeRotation = false;      // if true, maze start to rotate 90 degree
-    public float mazeRotationTime = 3f;     // time period of maze rotation
-
-    public void MazeRotationByControllBalls()
+    public void ControlBallsCleaning()
     {
-        // when TriggerEnter - ball change scale *2 (maybe play audioClip) - done
+        foreach (Transform child in controlBalls)
+        {
+            if (child != null)
+            {
+                //Debug.Log("child is " + child);
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+        FW_BallTrigger.singleton.gameObject.SetActive(false);
+        ballsDict.Clear();
+    }
 
-        // when TriggerEist - ball scale change back /2 - done
+    //public void ControlBallsStateAdjustment()
+    //{
+    //    controlBallsOrigin = controlBalls;      // record center location for reference
+    //    ballsDict.Clear();
+    //    foreach (Transform child in controlBalls)
+    //    {
+    //        if (child.position.y == controlBalls.position.y)
+    //        {
+    //            child.gameObject.SetActive(true);
 
+    //            // add child info into the dictionary, for reference
+    //            ballsDict.Add(child.gameObject, child.transform);
+    //        }
+    //        else
+    //        {
+    //            child.gameObject.SetActive(false);
+    //        }
+    //    }
+    //}
+
+
+    public Quaternion rotationAngle;    // for maze rotation control
+    public bool mazeRotationShouldStart = false;      // if true, maze start to rotate
+
+    private GameObject theBall;     // the ball in ball trigger
+    private Transform theBallOriginal;      // the ball's original transform
+    //public float mazeRotationTime = 5f;     // time period of maze rotation
+
+    /// <summary>
+    /// used by HandyMazeManagement
+    /// if Yes, rotate the maze, get rotation angle, output Yes, Clean all balls
+    /// if No, reset the ball position
+    /// </summary>
+    public void MazeRotationByControllBallsChecking()
+    {
         // when RightHand SelectionExit - if still in Trigger
         // then check ballDict, turn off ControlBalls, make Maze rotation
         if (FW_BallTrigger.singleton.ballTriggerIsTriggered)
@@ -82,33 +140,18 @@ public class FW_ControlBalls : MonoBehaviour
             theBallOriginal = result;       // the the ball's original transform
 
             // calculate the rotation angle
-            Quaternion.FromToRotation(theBallOriginal.position - controlBallsOrigin.position, Vector3.up);
+            rotationAngle = Quaternion.FromToRotation((theBallOriginal.position - controlBallsOrigin.position).normalized, Vector3.up);
+            Debug.Log("controlBallsOrigin.position =" + controlBallsOrigin.position);
+            Debug.Log("theBallOriginal.position = " + theBallOriginal.position);
+            Debug.Log("rotationAngle = " + rotationAngle.eulerAngles);
             // start maze rotation process in Update()
-            mazeRotation = true;
+            mazeRotationShouldStart = true;
+            Debug.Log("mazeRotationShouldStart = " + mazeRotationShouldStart);
         }
-
-
-        // run ControlBallsStateAdjustment() again
-    }
-
-    private void Update()
-    {
-        // if maze rotation is on
-        if (mazeRotation == true)
+        else
         {
-            float timeCounting = 0f;
-            while (timeCounting <mazeRotationTime)
-            {
-
-            }
-
+            mazeRotationShouldStart = false;
+            ControlBallsRegeneration();
         }
-        
-    }
-
-    // Method: if bool = true, Rotation with x (Qua or Euler) in y time (second)
-    public void MazeRotation()
-    {
-
     }
 }

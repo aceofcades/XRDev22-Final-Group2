@@ -32,8 +32,10 @@ public class FW_HandyMazeManagement : MonoBehaviour
         FW_ControlBalls.singleton.LeftHandSelectExit();
     }
 
-    public void BallSelectionExit()     // link to ball interactable event
+    public void BallSelectionExit()     // link to control ball prefab's interactable event
     {
-
+        // check if the maze should start rotation
+        Debug.Log("BallSelectionExit is running~");
+        FW_ControlBalls.singleton.MazeRotationByControllBallsChecking();
     }
 }
