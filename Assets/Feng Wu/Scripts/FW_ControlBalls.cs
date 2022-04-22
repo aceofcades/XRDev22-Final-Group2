@@ -11,13 +11,14 @@ public class FW_ControlBalls : MonoBehaviour
 {
     public static FW_ControlBalls singleton;
 
-    public GameObject ball;
+    public GameObject ball;     // link with ball prefab
+    public GameObject ballTrigger;      // link with ballTrigger prefab
     
     private Transform controlBalls;
-    private Transform controlBallsOrigin;
+    private Vector3 controlBallsOrigin;
 
     // Create a dictionary for active balls (object, transform)
-    private Dictionary<GameObject, Transform> ballsDict = new Dictionary<GameObject, Transform>();
+    private Dictionary<GameObject, Vector3> ballsDict = new Dictionary<GameObject, Vector3>();
 
     private void Awake()
     {
@@ -56,8 +57,9 @@ public class FW_ControlBalls : MonoBehaviour
         // do all cleaning first
         ControlBallsCleaning();
 
-        // turn on Trigger
+        // turn on Trigger and reset position
         FW_BallTrigger.singleton.gameObject.SetActive(true);
+        FW_BallTrigger.singleton.gameObject.transform.position = controlBalls.position+ new Vector3(0, controlBallDistance, 0);
 
         // create 4 control balls
         // move control balls to the right position - right, left, forward, backward
@@ -72,13 +74,13 @@ public class FW_ControlBalls : MonoBehaviour
         balls[3] = Instantiate(ball, controlBalls);
         balls[3].transform.position += new Vector3(0, 0, -controlBallDistance);
 
-        // record center location for reference
-        controlBallsOrigin = controlBalls;
+        // record center position for reference
+        controlBallsOrigin = controlBalls.position;
         // record their position for reference
         foreach (Transform child in controlBalls)
         {
             // add child info into the dictionary, for reference
-            ballsDict.Add(child.gameObject, child.transform);
+            ballsDict.Add(child.gameObject, child.transform.position);
         }
     }
 
@@ -121,7 +123,7 @@ public class FW_ControlBalls : MonoBehaviour
     public bool mazeRotationShouldStart = false;      // if true, maze start to rotate
 
     private GameObject theBall;     // the ball in ball trigger
-    private Transform theBallOriginal;      // the ball's original transform
+    private Vector3 theBallOriginal;      // the ball's original position
     //public float mazeRotationTime = 5f;     // time period of maze rotation
 
     /// <summary>
@@ -136,13 +138,13 @@ public class FW_ControlBalls : MonoBehaviour
         if (FW_BallTrigger.singleton.ballTriggerIsTriggered)
         {
             theBall = FW_BallTrigger.singleton.theBall;
-            ballsDict.TryGetValue(theBall, out Transform result);
+            ballsDict.TryGetValue(theBall, out Vector3 result);
             theBallOriginal = result;       // the the ball's original transform
 
             // calculate the rotation angle
-            rotationAngle = Quaternion.FromToRotation((theBallOriginal.position - controlBallsOrigin.position).normalized, Vector3.up);
-            Debug.Log("controlBallsOrigin.position =" + controlBallsOrigin.position);
-            Debug.Log("theBallOriginal.position = " + theBallOriginal.position);
+            rotationAngle = Quaternion.FromToRotation((theBallOriginal - controlBallsOrigin).normalized, Vector3.up);
+            Debug.Log("controlBallsOrigin.position =" + controlBallsOrigin);
+            Debug.Log("theBallOriginal.position = " + theBallOriginal);
             Debug.Log("rotationAngle = " + rotationAngle.eulerAngles);
             // start maze rotation process in Update()
             mazeRotationShouldStart = true;

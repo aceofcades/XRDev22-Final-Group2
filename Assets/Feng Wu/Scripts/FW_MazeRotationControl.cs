@@ -44,7 +44,8 @@ public class FW_MazeRotationControl : MonoBehaviour
             //Debug.Log(maze.transform.rotation.eulerAngles);
             if (timeCounting > timeOfRotation)
             {
-                rotationStepTwoOn = false;
+                rotationStepTwoOn = false;      // all the maze rotation process done
+                FW_ControlBalls.singleton.ControlBallsRegeneration();   // reset all balls
             }
             timeCounting += Time.deltaTime;
         }
