@@ -98,29 +98,9 @@ public class FW_ControlBalls : MonoBehaviour
         ballsDict.Clear();
     }
 
-    //public void ControlBallsStateAdjustment()
-    //{
-    //    controlBallsOrigin = controlBalls;      // record center location for reference
-    //    ballsDict.Clear();
-    //    foreach (Transform child in controlBalls)
-    //    {
-    //        if (child.position.y == controlBalls.position.y)
-    //        {
-    //            child.gameObject.SetActive(true);
 
-    //            // add child info into the dictionary, for reference
-    //            ballsDict.Add(child.gameObject, child.transform);
-    //        }
-    //        else
-    //        {
-    //            child.gameObject.SetActive(false);
-    //        }
-    //    }
-    //}
-
-
-    public Quaternion rotationAngle;    // for maze rotation control
-    public bool mazeRotationShouldStart = false;      // if true, maze start to rotate
+    public Quaternion RotationAngle { get; set; }    // for maze rotation control
+    public bool MazeRotationShouldStart { get; set; } = false;     // if true, maze start to rotate
 
     private GameObject theBall;     // the ball in ball trigger
     private Vector3 theBallOriginal;      // the ball's original position
@@ -142,17 +122,18 @@ public class FW_ControlBalls : MonoBehaviour
             theBallOriginal = result;       // the the ball's original transform
 
             // calculate the rotation angle
-            rotationAngle = Quaternion.FromToRotation((theBallOriginal - controlBallsOrigin).normalized, Vector3.up);
-            Debug.Log("controlBallsOrigin.position =" + controlBallsOrigin);
-            Debug.Log("theBallOriginal.position = " + theBallOriginal);
-            Debug.Log("rotationAngle = " + rotationAngle.eulerAngles);
+            RotationAngle = Quaternion.FromToRotation((theBallOriginal - controlBallsOrigin).normalized, Vector3.up);
+            //Debug.Log("controlBallsOrigin.position =" + controlBallsOrigin);
+            //Debug.Log("theBallOriginal.position = " + theBallOriginal);
+            //Debug.Log("rotationAngle = " + rotationAngle.eulerAngles);
+            
             // start maze rotation process in Update()
-            mazeRotationShouldStart = true;
-            Debug.Log("mazeRotationShouldStart = " + mazeRotationShouldStart);
+            MazeRotationShouldStart = true;
+            //Debug.Log("mazeRotationShouldStart = " + mazeRotationShouldStart);
         }
         else
         {
-            mazeRotationShouldStart = false;
+            MazeRotationShouldStart = false;
             ControlBallsRegeneration();
         }
     }

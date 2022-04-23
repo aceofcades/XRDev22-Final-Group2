@@ -23,10 +23,10 @@ public class FW_MazeRotationControl : MonoBehaviour
 
     void Update()
     {
-        if (FW_ControlBalls.singleton.mazeRotationShouldStart)
+        if (FW_ControlBalls.singleton.MazeRotationShouldStart)
         {
             rotationStepOneOn = true;
-            FW_ControlBalls.singleton.mazeRotationShouldStart = false;
+            FW_ControlBalls.singleton.MazeRotationShouldStart = false;
         }
         // trigger to get existing rotation
         if (rotationStepOneOn)
@@ -63,7 +63,7 @@ public class FW_MazeRotationControl : MonoBehaviour
         // get all the data
         mazeRotationOrigin = maze.transform.rotation;
         //Debug.Log(cubeRotationOrigin.eulerAngles);
-        rotationAngle = FW_ControlBalls.singleton.rotationAngle;
+        rotationAngle = FW_ControlBalls.singleton.RotationAngle;
         mazeRotationFinal = mazeRotationOrigin * rotationAngle;
         //Debug.Log(cubeRotationFinal.eulerAngles);
         // formally turn on the rotation

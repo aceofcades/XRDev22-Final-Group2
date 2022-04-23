@@ -9,25 +9,36 @@ public class FW_HandyMazeManagement : MonoBehaviour
 {
     public static FW_HandyMazeManagement singleton;
 
-    public GameObject maze;
-    public GameObject leftHand;
+    [Header("link to internal objects")]
     public GameObject handyMaze;
     public GameObject controlBalls;
+    public GameObject handyCube_Scaled;
 
+    [Header("link to external objects")]
+    public GameObject maze;
+    // public GameObject leftHand;
 
+    // private GameObject mazeInHandyCube;
     private void Awake()
     {
         singleton = this;
     }
 
+    private void Start()
+    {
+        DestroyAllChildren(handyCube_Scaled);
+    }
+
     public void LeftHandSelectEnter()   // link to left controller event
     {
         FW_ToggleObject.singleton.ToggleObjectOn();
+        Instantiate(maze, handyCube_Scaled.transform);
         FW_ControlBalls.singleton.LeftHandSelectEnter();
     }
 
     public void LeftHandSelectExit()    // link to left controller event
     {
+        DestroyAllChildren(handyCube_Scaled);
         FW_ToggleObject.singleton.ToggleObjectOff();
         FW_ControlBalls.singleton.LeftHandSelectExit();
     }
@@ -37,5 +48,16 @@ public class FW_HandyMazeManagement : MonoBehaviour
         // check if the maze should start rotation
         Debug.Log("BallSelectionExit is running~");
         FW_ControlBalls.singleton.MazeRotationByControllBallsChecking();
+    }
+
+    public void DestroyAllChildren(GameObject parent)
+    {
+        foreach ( Transform child in parent.transform)
+        {
+            if (child != null)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
     }
 }
