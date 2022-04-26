@@ -34,7 +34,11 @@ public class FW_ControlBalls : MonoBehaviour
     /// </summary>
     public void LeftHandSelectEnter()
     {
-        ControlBallsRegeneration();
+        if (MazeRotationIsOngoing == false)
+        {
+            ControlBallsRegeneration();
+        }
+
     }
 
     /// <summary>
@@ -65,6 +69,7 @@ public class FW_ControlBalls : MonoBehaviour
         // move control balls to the right position - right, left, forward, backward
         balls[0] = Instantiate(ball, controlBalls);
         //Debug.Log("position_1.1" + balls[0].transform.position);
+        //Debug.Log("rotation_1.1" + balls[0].transform.rotation.eulerAngles);
         balls[0].transform.position += new Vector3(controlBallDistance, 0, 0);
         //Debug.Log("position_1.2" + balls[0].transform.position);
         balls[1] = Instantiate(ball, controlBalls);
@@ -84,14 +89,14 @@ public class FW_ControlBalls : MonoBehaviour
         }
     }
 
+
     public void ControlBallsCleaning()
     {
-        foreach (Transform child in controlBalls)
+        foreach (GameObject item in balls)
         {
-            if (child != null)
+            if (item != null)
             {
-                //Debug.Log("child is " + child);
-                GameObject.Destroy(child.gameObject);
+                GameObject.Destroy(item.gameObject);
             }
         }
         FW_BallTrigger.singleton.gameObject.SetActive(false);
@@ -101,6 +106,7 @@ public class FW_ControlBalls : MonoBehaviour
 
     public Quaternion RotationAngle { get; set; }    // for maze rotation control
     public bool MazeRotationShouldStart { get; set; } = false;     // if true, maze start to rotate
+    public bool MazeRotationIsOngoing { get; set; } = false;    // if true, stop generation balls
 
     private GameObject theBall;     // the ball in ball trigger
     private Vector3 theBallOriginal;      // the ball's original position
@@ -125,11 +131,14 @@ public class FW_ControlBalls : MonoBehaviour
             RotationAngle = Quaternion.FromToRotation((theBallOriginal - controlBallsOrigin).normalized, Vector3.up);
             //Debug.Log("controlBallsOrigin.position =" + controlBallsOrigin);
             //Debug.Log("theBallOriginal.position = " + theBallOriginal);
-            //Debug.Log("rotationAngle = " + rotationAngle.eulerAngles);
-            
+            //Debug.Log("rotationAngle = " + RotationAngle.eulerAngles);
+
             // start maze rotation process in Update()
             MazeRotationShouldStart = true;
             //Debug.Log("mazeRotationShouldStart = " + mazeRotationShouldStart);
+
+            // switch status, will be set back to false by maze rotation control
+            MazeRotationIsOngoing = true;
         }
         else
         {

@@ -38,13 +38,14 @@ public class FW_MazeRotationControl : MonoBehaviour
         // Step Two, start the rotation process
         if (rotationStepTwoOn)
         {
-            Debug.Log("MazeRotationStepTwo is running~");
+            //Debug.Log("MazeRotationStepTwo is running~");
             float lerpTime = timeCounting / timeOfRotation;
             maze.transform.rotation = Quaternion.Lerp(mazeRotationOrigin, mazeRotationFinal, lerpTime);
             //Debug.Log(maze.transform.rotation.eulerAngles);
             if (timeCounting > timeOfRotation)
             {
                 rotationStepTwoOn = false;      // all the maze rotation process done
+                FW_ControlBalls.singleton.MazeRotationIsOngoing = false;
                 FW_ControlBalls.singleton.ControlBallsRegeneration();   // reset all balls
             }
             timeCounting += Time.deltaTime;
@@ -62,10 +63,15 @@ public class FW_MazeRotationControl : MonoBehaviour
         timeCounting = 0;
         // get all the data
         mazeRotationOrigin = maze.transform.rotation;
-        //Debug.Log(cubeRotationOrigin.eulerAngles);
+        //Debug.Log("mazeRotationOrigin =" + mazeRotationOrigin.eulerAngles);
         rotationAngle = FW_ControlBalls.singleton.RotationAngle;
-        mazeRotationFinal = mazeRotationOrigin * rotationAngle;
-        //Debug.Log(cubeRotationFinal.eulerAngles);
+        //Debug.Log("RotationAngle =" + FW_ControlBalls.singleton.RotationAngle.eulerAngles);
+        //mazeRotationFinal = mazeRotationOrigin * rotationAngle;
+        //Debug.Log("mazeRotationFinal_1 =" + mazeRotationFinal.eulerAngles);
+        mazeRotationFinal = rotationAngle * mazeRotationOrigin;
+        //Debug.Log("mazeRotationFinal_2 =" + mazeRotationFinal.eulerAngles);
+
+
         // formally turn on the rotation
         rotationStepTwoOn = true;
         // turn off the rotationTrigger

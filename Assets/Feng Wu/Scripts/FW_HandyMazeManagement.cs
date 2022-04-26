@@ -18,6 +18,8 @@ public class FW_HandyMazeManagement : MonoBehaviour
     public GameObject maze;
     // public GameObject leftHand;
 
+    private GameObject mazeInstance;
+
     // private GameObject mazeInHandyCube;
     private void Awake()
     {
@@ -32,7 +34,9 @@ public class FW_HandyMazeManagement : MonoBehaviour
     public void LeftHandSelectEnter()   // link to left controller event
     {
         FW_ToggleObject.singleton.ToggleObjectOn();
-        Instantiate(maze, handyCube_Scaled.transform);
+        DestroyAllChildren(handyCube_Scaled);
+        mazeInstance = Instantiate(maze, handyCube_Scaled.transform);
+        mazeInstance.transform.localEulerAngles = Vector3.zero;
         FW_ControlBalls.singleton.LeftHandSelectEnter();
     }
 
@@ -50,7 +54,7 @@ public class FW_HandyMazeManagement : MonoBehaviour
         FW_ControlBalls.singleton.MazeRotationByControllBallsChecking();
     }
 
-    public void DestroyAllChildren(GameObject parent)
+    private void DestroyAllChildren(GameObject parent)
     {
         foreach ( Transform child in parent.transform)
         {

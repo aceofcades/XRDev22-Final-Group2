@@ -18,6 +18,6 @@ public class FW_MatchRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.rotation = targetObject.transform.rotation;
+        FW_HandyMazeManagement.singleton.handyMaze.transform.rotation = targetObject.transform.rotation;
     }
 }
