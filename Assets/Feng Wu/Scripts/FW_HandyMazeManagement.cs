@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
 /// use this one to manage the whole Handy Maze
@@ -78,6 +79,7 @@ public class FW_HandyMazeManagement : MonoBehaviour
             if (child.GetComponent<Collider>() != null)
             {
                 Destroy(child.gameObject.GetComponent<Collider>());
+                Destroy(child.gameObject.GetComponent<TeleportationArea>());
             }
         }
         Debug.Log("collider is deleted");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
 /// add box collider for all the mesh in the object
@@ -20,6 +21,7 @@ public class FW_AddBoxCollider : MonoBehaviour
                 if (child.GetComponent<MeshRenderer>() != null)
                 {
                     child.gameObject.AddComponent<BoxCollider>();
+                    child.gameObject.AddComponent<TeleportationArea>();
                 }
             }
             Debug.Log("collider is added~");
