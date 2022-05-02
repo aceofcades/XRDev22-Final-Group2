@@ -1,0 +1,105 @@
+{
+    "name": "FW_VRControllerInputAction",
+    "maps": [
+        {
+            "name": "VR Controller",
+            "id": "f8f5c0b1-fcce-4197-b13f-c34dcf0f37de",
+            "actions": [
+                {
+                    "name": "LeftController_X",
+                    "type": "Button",
+                    "id": "fa4c145b-311c-4bf8-b17a-320387ecfe9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftController_Y",
+                    "type": "Button",
+                    "id": "e19c0155-534b-45c7-9057-7a34d25f63d5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightController_A",
+                    "type": "Button",
+                    "id": "91727127-714d-4991-a0a4-a4cd1387260d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightController_B",
+                    "type": "Button",
+                    "id": "f55e5c9c-5eb4-4de7-904c-dae7495de094",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "31a081a5-c35c-4310-b2a0-03dc6d56b707",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftController_X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1212cdd7-6b00-4613-ba8f-7879a221e9b6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftController_X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93f02471-e6fa-4965-83d5-8a57d2090f07",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftController_Y",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e927453-aca1-463a-8b42-b90489b2768e",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightController_A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32f7c3ba-9798-4d30-af74-1dc825e230bc",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightController_B",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

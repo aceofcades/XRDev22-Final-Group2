@@ -12,13 +12,17 @@ public class FW_AddBoxCollider : MonoBehaviour
     {
         //Transform[] allChildren = this.transform.GetComponentsInChildren<Transform>();
         //Debug.Log(allChildren.Length);
-
-        foreach (Transform child in this.transform.GetComponentsInChildren<Transform>())
+        if (this.transform.lossyScale == new Vector3(1,1,1))
+            // add conditional, so handy maze will not add collider
         {
-            if (child.GetComponent<MeshRenderer>() != null)
+            foreach (Transform child in this.transform.GetComponentsInChildren<Transform>())
             {
-                child.gameObject.AddComponent<BoxCollider>();
+                if (child.GetComponent<MeshRenderer>() != null)
+                {
+                    child.gameObject.AddComponent<BoxCollider>();
+                }
             }
+            Debug.Log("collider is added~");
         }
     }
 }

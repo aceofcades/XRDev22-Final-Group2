@@ -123,6 +123,7 @@ public class FW_ControlBalls : MonoBehaviour
         // then check ballDict, turn off ControlBalls, make Maze rotation
         if (FW_BallTrigger.singleton.ballTriggerIsTriggered)
         {
+            FW_BallTrigger.singleton.ballTriggerIsTriggered = false;    // set it back to false
             theBall = FW_BallTrigger.singleton.theBall;
             ballsDict.TryGetValue(theBall, out Vector3 result);
             theBallOriginal = result;       // the the ball's original transform

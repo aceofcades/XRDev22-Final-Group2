@@ -31,13 +31,14 @@ public class FW_HandyMazeManagement : MonoBehaviour
         DestroyAllChildren(handyCube_Scaled);
     }
 
+    // use VRControllerInput component to attached left controller X to the below methods
     public void LeftHandSelectEnter()   // link to left controller event
     {
         FW_ToggleObject.singleton.ToggleObjectOn();
         DestroyAllChildren(handyCube_Scaled);
-        mazeInstance = Instantiate(maze, handyCube_Scaled.transform);
-        mazeInstance.transform.localEulerAngles = Vector3.zero;
+        MazeInstantiation();
         FW_ControlBalls.singleton.LeftHandSelectEnter();
+        Debug.Log("leftHandSE is done~");
     }
 
     public void LeftHandSelectExit()    // link to left controller event
@@ -63,5 +64,30 @@ public class FW_HandyMazeManagement : MonoBehaviour
                 GameObject.Destroy(child.gameObject);
             }
         }
+    }
+
+    private void MazeInstantiation()
+    {
+        mazeInstance = Instantiate(maze, handyCube_Scaled.transform);
+        mazeInstance.transform.localEulerAngles = Vector3.zero;
+        Debug.Log("local scale =" +mazeInstance.transform.localScale);
+        Debug.Log("global scale =" + mazeInstance.transform.lossyScale);
+        // delete all collider in maze
+        foreach (Transform child in mazeInstance.transform.GetComponentsInChildren<Transform>())
+        {
+            if (child.GetComponent<Collider>() != null)
+            {
+                Destroy(child.gameObject.GetComponent<Collider>());
+            }
+        }
+        Debug.Log("collider is deleted");
+        //var allColliders = GetComponentsInChildren<BoxCollider>();
+        //Debug.Log("allColliders length =" + allColliders.Length);
+        //Debug.Log("allColliders =" + allColliders[15].name);
+        //foreach (var childCollider in allColliders)
+        //{
+        //    childCollider.isTrigger = true;
+        //    Destroy(childCollider);
+        //}
     }
 }
