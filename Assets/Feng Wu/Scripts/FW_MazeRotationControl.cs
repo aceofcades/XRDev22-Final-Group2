@@ -31,7 +31,7 @@ public class FW_MazeRotationControl : MonoBehaviour
         // trigger to get existing rotation
         if (rotationStepOneOn)
         {
-            Debug.Log("MazeRotationStepOne is running~");
+            //Debug.Log("MazeRotationStepOne is running~");
             MazeRotationStepOne();
         }
 

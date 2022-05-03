@@ -39,7 +39,7 @@ public class FW_HandyMazeManagement : MonoBehaviour
         DestroyAllChildren(handyCube_Scaled);
         MazeInstantiation();
         FW_ControlBalls.singleton.LeftHandSelectEnter();
-        Debug.Log("leftHandSE is done~");
+        //Debug.Log("leftHandSE is done~");
     }
 
     public void LeftHandSelectExit()    // link to left controller event
@@ -52,7 +52,7 @@ public class FW_HandyMazeManagement : MonoBehaviour
     public void BallSelectionExit()     // link to control ball prefab's interactable event
     {
         // check if the maze should start rotation
-        Debug.Log("BallSelectionExit is running~");
+        //Debug.Log("BallSelectionExit is running~");
         FW_ControlBalls.singleton.MazeRotationByControllBallsChecking();
     }
 
@@ -71,18 +71,18 @@ public class FW_HandyMazeManagement : MonoBehaviour
     {
         mazeInstance = Instantiate(maze, handyCube_Scaled.transform);
         mazeInstance.transform.localEulerAngles = Vector3.zero;
-        Debug.Log("local scale =" +mazeInstance.transform.localScale);
-        Debug.Log("global scale =" + mazeInstance.transform.lossyScale);
+        //Debug.Log("local scale =" +mazeInstance.transform.localScale);
+        //Debug.Log("global scale =" + mazeInstance.transform.lossyScale);
         // delete all collider in maze
         foreach (Transform child in mazeInstance.transform.GetComponentsInChildren<Transform>())
         {
             if (child.GetComponent<Collider>() != null)
             {
                 Destroy(child.gameObject.GetComponent<Collider>());
-                Destroy(child.gameObject.GetComponent<TeleportationArea>());
+                //Destroy(child.gameObject.GetComponent<TeleportationArea>());
             }
         }
-        Debug.Log("collider is deleted");
+        //Debug.Log("collider is deleted");
         //var allColliders = GetComponentsInChildren<BoxCollider>();
         //Debug.Log("allColliders length =" + allColliders.Length);
         //Debug.Log("allColliders =" + allColliders[15].name);
