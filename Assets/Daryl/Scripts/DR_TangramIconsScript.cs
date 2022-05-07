@@ -12,11 +12,13 @@ public class DR_TangramIconsScript : MonoBehaviour
     void Start()
     {
         myIcon.color = new Color(1, 1, 1, 0.2f);
+        
     }
 
     public void OnMyTangramFound()
     {
         myIcon.color = new Color(1, 1, 1, 1);
         this.gameObject.SetActive(false);
+        DR_TangramPiecesManager.IncrementNumTangramsFound();        
     }
 }
