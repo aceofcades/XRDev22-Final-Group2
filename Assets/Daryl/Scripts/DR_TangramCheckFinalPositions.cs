@@ -6,10 +6,8 @@ public class DR_TangramCheckFinalPositions : MonoBehaviour
     [SerializeField]
     MeshRenderer currentObject;
 
-    DR_LevelManager _levelManager;
-
     Quaternion orangeTriangleDesiredRotation = new Quaternion(90f, -135f, 0f, 1f);
-    Quaternion orangeTriangleDesiredPosition = new Quaternion(1.195f, 0.985f, -0.133f, 1f);
+    Vector3 orangeTriangleDesiredPosition = new Vector3(1.2f, 0.985f, -0.13f);
 
     Quaternion greenSquareDesiredRotation = new Quaternion(90f, 0f, 0f, 1f);
     Quaternion greenSquareDesiredPosition = new Quaternion(0.841f, 0.985f, 0.273f, 1f);
@@ -44,39 +42,31 @@ public class DR_TangramCheckFinalPositions : MonoBehaviour
         gameObject.transform.Rotate(0f, 0f, newZ);
     }
 
-    private void OnTangramMoved()
+    public void OnObjectSelectionExited()
     {
-        CheckTangramPosition();
+        CheckTangramRotation();
     }
 
-    private void CheckTangramPosition()
+    private void CheckTangramRotation()
     {
-
-    }
-
-    private void Start()
-    {
-        currentObject.transform.hasChanged = false;
-    }
-
-    private void Update()
-    {
-
         if (currentObject.transform.hasChanged)
         {
-            Quaternion whereItIsNow = currentObject.transform.rotation;
+            Quaternion currentRotation = currentObject.transform.rotation;
+            Vector3 currentPosition = currentObject.transform.localPosition;
             // figure out which object this is
             switch (currentObject.name)
             {
                 case "OrangeTriangle":
                     {
-                        if (whereItIsNow  == orangeTriangleDesiredRotation)
-                        {
-                            _levelManager.AddObjectRotationOk(currentObject);                            
+                        Debug.Log("X:" + currentPosition.x + " Y:" + currentPosition.y + " Z:" + currentPosition.z);
+                        // now checkif the rotation around X is as it needs to be
+                        if (currentRotation  == orangeTriangleDesiredRotation)
+                        {                           
+                            DR_LevelManager.Instance.AddObjectRotationOk(currentObject.name);                            
                         }
                         else
                         {
-                            _levelManager.RemoveObjectRotationOk(currentObject);
+                            DR_LevelManager.Instance.RemoveObjectRotationOk(currentObject.name);
                         }
                         break;
                     }
