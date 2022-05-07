@@ -20,6 +20,7 @@ public class DR_TangramPiecesManager : MonoBehaviour
     public static void IncrementNumTangramsFound()
     {
         NumTangramsFound++;
+        Debug.Log(NumTangramsFound.ToString());
         if (NumTangramsFound == 7)
         {
             DR_AudioManager.Instance.AudioPlayer.PlayOneShot(DR_AudioManager.Instance.LevelUpSoundEffect);
