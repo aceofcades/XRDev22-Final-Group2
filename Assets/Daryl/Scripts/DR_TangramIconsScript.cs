@@ -12,41 +12,13 @@ public class DR_TangramIconsScript : MonoBehaviour
     void Start()
     {
         myIcon.color = new Color(1, 1, 1, 0.2f);
+        
     }
 
     public void OnMyTangramFound()
     {
         myIcon.color = new Color(1, 1, 1, 1);
         this.gameObject.SetActive(false);
+        DR_TangramPiecesManager.IncrementNumTangramsFound();        
     }
-
-    //public void OnYellowTriangleFound()
-    //{
-    //    YellowTriangleIcon.color = new Color(1, 1, 1, 1);
-    //}
-
-    //public void OnFushiaTriangleFound()
-    //{
-    //    FuschiaTriangleIcon.color = new Color(1, 1, 1, 1);
-    //}
-
-    //public void OnPinkTriangleFound()
-    //{
-    //    PinkTriangleIcon.color = new Color(1, 1, 1, 1);
-    //}
-
-    //public void OnCyanTriangleFound()
-    //{
-    //    CyanTriangleIcon.color = new Color(1, 1, 1, 1);
-    //}
-
-    //public void OnGreenSquareFound()
-    //{
-    //    GreenSquareIcon.color = new Color(1, 1, 1, 1);
-    //}
-
-    //public void OnBlueParalellogramFound()
-    //{
-    //    BlueParalellogramIcon.color = new Color(1, 1, 1, 1);
-    //}
 }
