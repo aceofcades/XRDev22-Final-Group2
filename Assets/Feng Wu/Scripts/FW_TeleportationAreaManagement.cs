@@ -47,7 +47,7 @@ public class FW_TeleportationAreaManagement : MonoBehaviour
     public void AddTelepArea()
     {
         if (this.transform.lossyScale == new Vector3(1, 1, 1))
-        // add conditional, so handy maze will not add Teleportation Area
+            // add condition, so handy maze will not add Teleportation Area
         {
             foreach (Transform child in this.transform.GetComponentsInChildren<Transform>())
             {
@@ -57,10 +57,22 @@ public class FW_TeleportationAreaManagement : MonoBehaviour
                     Vector3 position = child.gameObject.GetComponent<BoxCollider>().center;
                     telepAreaInstance.transform.localPosition = position;
                     telepAreaInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    
+
+                    // add all telp Area into a list for future easier management
                     listOfTelepAreas.Add(telepAreaInstance);
                 }
             }
+
+            // detect overlap telep area and destroy
+            //foreach (GameObject item in listOfTelepAreas)
+            //{
+            //    if (item.GetComponent<FW_TelepArea>().IsWithinMazeBox == true)
+            //    {
+            //        listOfTelepAreas.Remove(item);
+            //        Destroy(item);
+            //    }
+            //}
+
             Debug.Log("Teleportation Areas are added~");
         }
     }

@@ -20,7 +20,13 @@ public class FW_AddBoxCollider : MonoBehaviour
             {
                 if (child.GetComponent<MeshRenderer>() != null)
                 {
+                    // add collider for keep the boundary
                     child.gameObject.AddComponent<BoxCollider>();
+
+                    // add trigger to detect if there is things inside
+                    BoxCollider trigger = child.gameObject.AddComponent<BoxCollider>();
+                    trigger.isTrigger = true;
+                    child.gameObject.AddComponent<FW_MazeBoxTriggerAction>();
                 }
             }
             Debug.Log("collider is added~");
