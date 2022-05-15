@@ -69,6 +69,11 @@ public class FW_CameraManagement : MonoBehaviour
 
     private void Update()    // OnGUI doesn't work for VR...
     {
+        TriggerFading();
+    }
+
+    private void TriggerFading()
+    {
         if (fadeOnGoing != true) return;
 
         // Create black texture on camera
@@ -78,12 +83,12 @@ public class FW_CameraManagement : MonoBehaviour
         texture.Apply();    // allpy the SetPixel changes
         if (fadeOutStart)
             fadeTiming += Time.deltaTime / fadeProcessTime;
-        else if(fadeInStart)
+        else if (fadeInStart)
             fadeTiming -= Time.deltaTime / fadeProcessTime;
         alpha = fadeCurve.Evaluate(fadeTiming);
         fadeBoardImage.color = new Color(0, 0, 0, alpha);
         //Debug.Log(fadeBoardImage.color.a);
-        
+
         if (fadeTiming >= 1)
             fadeTiming = 1;
         if (fadeTiming <= 0)
