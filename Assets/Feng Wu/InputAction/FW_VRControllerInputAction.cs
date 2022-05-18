@@ -78,8 +78,30 @@ public partial class @FW_VRControllerInputAction : IInputActionCollection2, IDis
                 },
                 {
                     ""name"": """",
+                    ""id"": ""f605e8c7-8e76-4ed5-8926-e0b4573ea3a1"",
+                    ""path"": ""<OculusTouchController>{LeftHand}/primaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftController_X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1212cdd7-6b00-4613-ba8f-7879a221e9b6"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftController_X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f845cdcb-4607-4015-9120-426cc04ff467"",
+                    ""path"": ""<ViveController>{LeftHand}/menu"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -100,6 +122,17 @@ public partial class @FW_VRControllerInputAction : IInputActionCollection2, IDis
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6a2d71f0-7113-46bf-9a73-7fd8580dcb54"",
+                    ""path"": ""<OculusTouchController>{LeftHand}/secondaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftController_Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4e927453-aca1-463a-8b42-b90489b2768e"",
                     ""path"": ""<XRController>{RightHand}/primaryButton"",
                     ""interactions"": """",
@@ -111,8 +144,41 @@ public partial class @FW_VRControllerInputAction : IInputActionCollection2, IDis
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9d146fbe-407b-4bb8-aa31-497146da8427"",
+                    ""path"": ""<OculusTouchController>{RightHand}/primaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightController_A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d574c578-a9d8-4dff-8ff0-df287290d990"",
+                    ""path"": ""<ViveController>{RightHand}/menu"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightController_A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""32f7c3ba-9798-4d30-af74-1dc825e230bc"",
                     ""path"": ""<XRController>{RightHand}/secondaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightController_B"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""427fd4c4-e64f-4b7b-940d-f41feb98324b"",
+                    ""path"": ""<OculusTouchController>{RightHand}/secondaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
