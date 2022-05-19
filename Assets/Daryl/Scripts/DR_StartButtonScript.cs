@@ -7,9 +7,6 @@ public class DR_StartButtonScript : MonoBehaviour
    
     public void OnButtonPress()
     {
-        Debug.Log("Start Button Clicked.");
-        //Scene cubeScene = SceneManager.GetSceneByPath("Assets/Feng Wu/Scene/Test03_VR.unity");
-        //Debug.Log($"cubeScene.name is {cubeScene.name}");
-        SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
     }
 }

@@ -1009,10 +1009,10 @@ MonoBehaviour:
   m_text: 'When you click Start, you will be transported to a location within the
     "Labyrinth": a 3D maze conceptually similar to one shown behind this text.  Once
     you are inside, use teleport to move around and search for Tangram tiles.  Click
-    the A button on your controller to bring up a model of the maze you are in and
-    rotate it around to move in different dimensions (X, Y, Z).  When you find them
-    all, you''ll be transported to a room to assemble the tiles to a shape & level
-    up.'
+    the X button (Oculus) or Menu button (Vive Pro) on your controller to bring up
+    a model of the maze you are in and rotate it around to move in different dimensions
+    (X, Y, Z).  When you find them all, you''ll be transported to a room to assemble
+    the tiles to a shape & level up.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
