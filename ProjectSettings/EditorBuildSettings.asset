@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Starting Scene.unity
     guid: 92e45bd1fe02fc74ebde1f959ec1210f
   - enabled: 1
-    path: Assets/Feng Wu/Scene/Test03_VR.unity
-    guid: 2a532a9884c6ead4681b25d63954f430
+    path: Assets/Scenes/Level1Labyrinth.unity
+    guid: 6c724ffcccd11284f8aefd0c9161104e
   - enabled: 1
     path: Assets/Daryl/Scenes/Level1TangramPuzzle.unity
     guid: f62a60ba12d7b67489ba72036dc43fb4
